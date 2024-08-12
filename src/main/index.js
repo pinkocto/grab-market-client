@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
   const [products, setProducts] = React.useState([]);
@@ -37,26 +38,28 @@ function MainPage() {
           {products.map(function (product, index) {
             return (
               <div className="product-card">
-                <div>
-                  <img
-                    className="product-img"
-                    // src="images/products/keyboard1.jpg"
-                    src={product.imageUrl} // jsx 문법을 이용해서 각각의 필요한 값들을 넣어줌.
-                  />
-                </div>
-
-                <div className="product-contents">
-                  {/* jsx 문법을 이용해 각각의 필요한 값들을 넣어줌. */}
-                  <span className="product-name">{product.name}</span>
-                  <span className="product-price">{product.price}원</span>
-                  <div className="product-seller">
+                <Link className="product-link" to={`/products/${index}`}>
+                  <div>
                     <img
-                      className="product-avatar"
-                      src="images/icons/avatar.png"
+                      className="product-img"
+                      // src="images/products/keyboard1.jpg"
+                      src={product.imageUrl} // jsx 문법을 이용해서 각각의 필요한 값들을 넣어줌.
                     />
-                    <span>{product.seller}</span>
                   </div>
-                </div>
+
+                  <div className="product-contents">
+                    {/* jsx 문법을 이용해 각각의 필요한 값들을 넣어줌. */}
+                    <span className="product-name">{product.name}</span>
+                    <span className="product-price">{product.price}원</span>
+                    <div className="product-seller">
+                      <img
+                        className="product-avatar"
+                        src="images/icons/avatar.png"
+                      />
+                      <span>{product.seller}</span>
+                    </div>
+                  </div>
+                </Link>
               </div>
             );
           })}
